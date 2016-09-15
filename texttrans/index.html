@@ -1,0 +1,105 @@
+<html>
+<head>
+    <style>
+       p{
+           margin:0
+       }
+       .trans span:first-child{
+  position: absolute;
+  animation: top-in 1s infinite ease-in-out;
+  
+}
+/* .trans:before{
+  content: '⧉';
+  font-size: 0.5em;
+  margin-right: 0.2em;
+} */
+
+.trans span:last-child{
+  position: absolute;
+  animation: bottom-in 1s infinite ease-in-out ;
+}
+body{
+    margin-top: 100px;
+    min-height: 150vh;
+}
+
+@keyframes top-in{
+  100%{
+    -webkit-transform: translateY(-0.8em) scale(0.8);
+     opacity: 0.2;
+     scale:0.5;
+  }
+  0%{
+    webkit-transform: translateY(0px) scale(1);
+      opacity: 1;
+      scale:1;
+  }
+}
+
+@keyframes bottom-in{
+  100%{
+    -webkit-transform: translateY(0px) scale(1);
+    opacity; 1;
+  }
+  0%{
+    -webkit-transform: translateY(0.8em) scale(0.8);
+    opacity: 0.2;
+    
+      }
+}
+
+
+    </style>
+</head>
+
+    <body>
+        <p>
+            show
+            <span class="trans">
+                <span>
+                    roll
+                </span>
+                <span >
+                    rollen
+                </span>
+            </span>
+            
+            effect
+        </p>
+
+        <!--<p>
+            My framework for getting places, accomplishing things and living in a way that makes me happy.
+            This isn’t a bullshit, head in the clouds, you can do it if you just *believe*post. There’s plenty of those out there. I’m not going to write another one.
+            This post is about how to actually, practically invest in yourself in a way that is going to pay real dividends.
+            How to take the steps today that will enable you to be a better person, a better creative, a better developer or a better business owner tomorrow.
+            And how to do awesome things with your life.
+        </p>-->
+    </body>
+    <script>
+
+        var last_known_scroll_position = 0;
+        var ticking = false;
+
+        function doSomething(scroll_pos) {
+        // do something with the scroll position
+            console.log(scroll_pos)
+        }
+
+        window.addEventListener('scroll', function(e) {
+        last_known_scroll_position = window.scrollY;
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+            doSomething(last_known_scroll_position);
+            ticking = false;
+            });
+        }
+        ticking = true;
+        });
+
+
+
+        //   rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        // rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+    </script>
+</html>

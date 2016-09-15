@@ -1,0 +1,17 @@
+.trans >* {
+    position: absolute;
+    animation: roll-out 1s;
+}
+.trans{
+    position:relative;
+}
+
+@keyframes roll-out{
+    0%{
+
+    }
+    100%{
+        
+    }
+
+}
