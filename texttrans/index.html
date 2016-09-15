@@ -5,11 +5,11 @@
         
         .trans span {
             position: absolute;
+            visibility:hidden;
         }
-
+      
         .trans span:last-child {
             position: relative;
-            visibility: hidden;
         }
         
         body {
@@ -18,19 +18,23 @@
         }
 
         .animate-top-mid{
-            animation: mid-top 1s ease-in-out reverse;
+            visibility:visible!important;
+            animation: mid-top 1s  ease-in-out reverse;
             animation-fill-mode: forwards;
         }
         .animate-mid-bottom{
-            animation: bottom-mid 1s ease-in-out reverse;
+            visibility:visible!important;
+            animation: bottom-mid 1s  ease-in-out reverse;
             animation-fill-mode: forwards;
         }
         .animate-mid-top{
-            animation: mid-top 1s ease-in-out;
+            visibility:visible!important;
+            animation: mid-top 1s  ease-in-out;
             animation-fill-mode: forwards;
         }
         .animate-bottom-mid{
-            animation: bottom-mid 1s ease-in-out;
+            visibility:visible!important;
+            animation: bottom-mid  1s ease-in-out;
             animation-fill-mode: forwards;
         }
 
@@ -70,10 +74,10 @@
     <p>
         show
         <span class="trans">
-                <span class="animate-mid-top">
+                <span class="">
                     Deutsch
                 </span>
-                <span class="animate-bottom-mid">
+                <span class="">
                     Spanisch
                 </span>
                 <span>
@@ -83,13 +87,13 @@
 
         effect
     </p>
-     <p>
+     <p style="position:relative;top:400px">
         show
         <span class="trans">
-                <span class="animate-top-mid">
+                <span class="">
                     Deutsch
                 </span>
-                <span class="animate-mid-bottom">
+                <span class="">
                     Spanisch
                 </span>
                 <span>
@@ -112,10 +116,39 @@
 
         var last_known_scroll_position = 0;
         var ticking = false;
+        var transArr = document.getElementsByClassName('trans');
 
+console.table(transArr)
         function doSomething(scroll_pos) {
         // do something with the scroll position
-            console.log(scroll_pos)
+            console.log('scrolpos',scroll_pos);
+            [].forEach.call(transArr,function(el){
+                console.log(el)
+                var bodyRect = document.body.getBoundingClientRect(),
+                    elemRect = el.getBoundingClientRect(),
+                    offset   = elemRect.top - bodyRect.top;
+                    // is drunter ?
+                    if(window.innerHeight/2<elemRect.top){
+                        console.log('is drunter',el.children[0])
+                        el.children[0].classList.remove("animate-top-mid");
+                        el.children[1].classList.remove("animate-mid-bottom");
+                        //void element.offsetWidth;
+                        setTimeout(function(){
+                            el.children[0].classList.add("animate-mid-top");
+                            el.children[1].classList.add("animate-bottom-mid");
+                        },00)
+
+                    }else{
+                        el.children[0].classList.remove("animate-mid-top");
+                        el.children[1].classList.remove("animate-bottom-mid");
+
+                        window.setTimeout(function(){
+                            el.children[0].classList.add("animate-top-mid");
+                            el.children[1].classList.add("animate-mid-bottom");
+                        },00)
+                    }
+            })
+            
         }
 
         window.addEventListener('scroll', function(e) {
