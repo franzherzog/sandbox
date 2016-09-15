@@ -2,38 +2,48 @@
 
 <head>
     <style>
-        .hidden {
-            visibility: hidden;
-        }
         
-        .hidden:last-child {
+        .trans span {
             position: absolute;
         }
-        
-        .trans span:first-child {
-            position: absolute;
-            animation: mid-top 1s infinite ease-in-out;
-        }
-        /* .trans:before{
-            content: '⧉';
-            font-size: 0.5em;
-            margin-right: 0.2em;
-            } */
-        
+
         .trans span:last-child {
-            position: absolute;
-            animation: bottom-mid 1s infinite ease-in-out;
+            position: relative;
+            visibility: hidden;
         }
         
         body {
             margin-top: 100px;
             min-height: 150vh;
         }
+
+        .animate-top-mid{
+            animation: mid-top 1s ease-in-out reverse;
+            animation-fill-mode: forwards;
+        }
+        .animate-mid-bottom{
+            animation: bottom-mid 1s ease-in-out reverse;
+            animation-fill-mode: forwards;
+        }
+        .animate-mid-top{
+            animation: mid-top 1s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+        .animate-bottom-mid{
+            animation: bottom-mid 1s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        /* .trans:before{
+            content: '⧉';
+            font-size: 0.5em;
+            margin-right: 0.2em;
+            } */
         
         @keyframes mid-top {
             100% {
                 -webkit-transform: translateY(-0.8em) scale(0.8);
-                opacity: 0.2;
+                opacity: 0;
                 scale: 0.5;
             }
             0% {
@@ -46,12 +56,11 @@
         @keyframes bottom-mid {
             100% {
                 -webkit-transform: translateY(0px) scale(1);
-                opacity;
-                1;
+                opacity: 1;
             }
             0% {
                 -webkit-transform: translateY(0.8em) scale(0.8);
-                opacity: 0.2;
+                opacity: 0;
             }
         }
     </style>
@@ -61,12 +70,31 @@
     <p>
         show
         <span class="trans">
-                <span>
-                    roll
+                <span class="animate-mid-top">
+                    Deutsch
                 </span>
-        <span>
-                    rollen
+                <span class="animate-bottom-mid">
+                    Spanisch
+                </span>
+                <span>
+                    Spanisch
+                </span>
         </span>
+
+        effect
+    </p>
+     <p>
+        show
+        <span class="trans">
+                <span class="animate-top-mid">
+                    Deutsch
+                </span>
+                <span class="animate-mid-bottom">
+                    Spanisch
+                </span>
+                <span>
+                    Spanisch
+                </span>
         </span>
 
         effect
