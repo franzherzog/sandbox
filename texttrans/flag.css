@@ -1,6 +1,6 @@
 .flag{
     position: fixed;
-    top: 45%;
+    top: 28%;
     width: 2em;
     background-color: green;
     height: 2em;
@@ -15,7 +15,7 @@
 }
 body:after{
     position: fixed;
-    top: 50%;
+    top: 33%;
     opacity: 0.1;
     height: 1em;
     width:33%;

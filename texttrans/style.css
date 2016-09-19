@@ -2,9 +2,13 @@ p{
     margin-left: 3em;
     margin-right: 3em;
 }
+body{
+    line-height: 2em;
+}
         
         .trans span {
             position: absolute;
+            font-weight: bold;
             /*visibility:hidden;*/
             -webkit-transition-property: -webkit-transform;
             -moz-transition-property: -moz-transform;
