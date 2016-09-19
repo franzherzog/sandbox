@@ -551,8 +551,8 @@
         // do something with the scroll position
             [].forEach.call(transArr,function(el){
                 var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
-                var fontSize = parseFloat(style); 
-                var maxOffset = fontSize/2;
+                var fontSize = parseFloat(style);  
+                var maxOffset = fontSize/2; // max distance to middle ( attention: +1/2 fontSize is offset )
                 var maxPixel = 50;
                 var animateStep =  maxOffset / maxPixel ;               
                 var bodyRect = document.body.getBoundingClientRect(),
@@ -569,16 +569,18 @@
                     }
 
                     var move = offset * animateStep - fontSize/2;
-                    console.log(move)
+                    var opacity;
                     if(elemRect.top>regulator){
-                        // under the midpoint
+                        // under the mid
                         el.children[0].style.transform = 'translateY('+move+'px)';
-                        var opacity = Math.abs(parseFloat(move/maxOffset));
-                        el.children[1].style.opacity =opacity;
-                        move = move+fontSize;
-                        opacity = 1-opacity;
+
+
+                        opacity = Math.abs(parseFloat(move/maxOffset));
+                        el.children[1].style.opacity = opacity;
+                        el.children[0].style.opacity = 1;
+
+                        move = move+fontSize;   
                         el.children[1].style.transform = 'translateY('+move+'px)';
-                        el.children[0].style.opacity = opacity;
                         // el.children[0].classList.remove("animate-top-mid");
                         // el.children[1].classList.remove("animate-mid-bottom");
                         // //void element.offsetWidth;
@@ -591,7 +593,10 @@
                     else{        
                         // above the middle
                         el.children[0].style.transform = 'translateY('+move+'px)';
+                        el.children[1].style.opacity = 1;
                         move = move+fontSize;
+                        opacity = Math.abs(parseFloat(move/maxOffset));
+                        el.children[0].style.opacity = opacity;
                         el.children[1].style.transform = 'translateY('+move+'px)';
                         // el.children[0].classList.remove("animate-mid-top");
                         // el.children[1].classList.remove("animate-bottom-mid");
