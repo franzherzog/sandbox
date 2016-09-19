@@ -15,9 +15,25 @@
         <img class="" src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" alt="United Kingdom Flag">
     </div>
     <div class="flag secflag">
-    <img class="" src="https://lipis.github.io/flag-icon-css/flags/4x3/es.svg" alt="Spain Flag">
+        <img class="" src="https://lipis.github.io/flag-icon-css/flags/4x3/es.svg" alt="Spain Flag">
     </div>
     <p>
+
+        My
+        <span class="trans">
+                <span class="">
+                    Ehefrau
+                </span>
+        <span class="">
+                    wife
+                </span>
+        <span>
+                    Ehefrau
+                </span>
+        </span>
+        , Adrienne, and I are long-time
+    </p>
+    <!--<p>
         My
         <span class="trans">
                 <span class="">
@@ -521,7 +537,7 @@
                 </span>
         </span>
         empowering to recipients, but many people in ‘the west’ think it’s risky…or even foolish.
-    </p>
+    </p>-->
 </body>
 <script>
 
@@ -529,47 +545,74 @@
         var ticking = false;
         var transArr = document.getElementsByClassName('trans');
 
-console.table(transArr)
+
+
         function doSomething(scroll_pos) {
         // do something with the scroll position
-            console.log('scrolpos',scroll_pos);
             [].forEach.call(transArr,function(el){
-                console.log(el)
+                var style = window.getComputedStyle(el, null).getPropertyValue('font-size');
+                var fontSize = parseFloat(style); 
+                var maxOffset = fontSize/2;
+                var maxPixel = 50;
+                var animateStep =  maxOffset / maxPixel ;               
                 var bodyRect = document.body.getBoundingClientRect(),
                     elemRect = el.getBoundingClientRect(),
-                    offset   = elemRect.top - bodyRect.top;
-                    // is drunter ?
-                    if(window.innerHeight/2<elemRect.top){
-                        console.log('is drunter',el.children[0])
-                        el.children[0].classList.remove("animate-top-mid");
-                        el.children[1].classList.remove("animate-mid-bottom");
-                        //void element.offsetWidth;
-                        setTimeout(function(){
-                            el.children[0].classList.add("animate-mid-top");
-                            el.children[1].classList.add("animate-bottom-mid");
-                        },00)
+                    regulator = window.innerHeight / 2,
+                    offset   = elemRect.top - regulator;
 
-                    }else{
-                        el.children[0].classList.remove("animate-mid-top");
-                        el.children[1].classList.remove("animate-bottom-mid");
+                    
+                    if(offset> maxPixel){
+                        offset = maxPixel;
+                    }
+                    else if(offset<-maxPixel){
+                        offset = -maxPixel;
+                    }
 
-                        window.setTimeout(function(){
-                            el.children[0].classList.add("animate-top-mid");
-                            el.children[1].classList.add("animate-mid-bottom");
-                        },00)
+                    var move = offset * animateStep - fontSize/2;
+                    console.log(move)
+                    if(elemRect.top>regulator){
+                        // under the midpoint
+                        el.children[0].style.transform = 'translateY('+move+'px)';
+                        var opacity = Math.abs(parseFloat(move/maxOffset));
+                        el.children[1].style.opacity =opacity;
+                        move = move+fontSize;
+                        opacity = 1-opacity;
+                        el.children[1].style.transform = 'translateY('+move+'px)';
+                        el.children[0].style.opacity = opacity;
+                        // el.children[0].classList.remove("animate-top-mid");
+                        // el.children[1].classList.remove("animate-mid-bottom");
+                        // //void element.offsetWidth;
+                        // setTimeout(function(){
+                        //     el.children[0].classList.add("animate-mid-top");
+                        //     el.children[1].classList.add("animate-bottom-mid");
+                        // },00)
+
+                    }
+                    else{        
+                        // above the middle
+                        el.children[0].style.transform = 'translateY('+move+'px)';
+                        move = move+fontSize;
+                        el.children[1].style.transform = 'translateY('+move+'px)';
+                        // el.children[0].classList.remove("animate-mid-top");
+                        // el.children[1].classList.remove("animate-bottom-mid");
+
+                        // window.setTimeout(function(){
+                        //     el.children[0].classList.add("animate-top-mid");
+                        //     el.children[1].classList.add("animate-mid-bottom");
+                        // },00)
                     }
             })
             
         }
 
-        window.addEventListener('scroll', function(e) {
+        document.addEventListener('scroll', function(e) {
         last_known_scroll_position = window.scrollY;
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
+        // if (!ticking) {
+            // window.requestAnimationFrame(function() {
             doSomething(last_known_scroll_position);
             ticking = false;
-            });
-        }
+            // });
+        // }
         ticking = true;
         });
 

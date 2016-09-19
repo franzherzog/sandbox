@@ -5,8 +5,7 @@ p{
         
         .trans span {
             position: absolute;
-            visibility:hidden;
-            transition: 1s ease-in-out;
+            /*visibility:hidden;*/
             -webkit-transition-property: -webkit-transform;
             -moz-transition-property: -moz-transform;
             -ms-transition-property: -ms-transform;
@@ -16,12 +15,17 @@ p{
       
         .trans span:last-child {
             position: relative;
+            visibility: hidden;
         }
         
         body {
-            margin-top: 100px;
+            height: 20000px;
             min-height: 150vh;
+            padding-top: 700px;
         }
+
+
+        /*keyframes from here*/
 
         .animate-top-mid{
             visibility:visible!important;
