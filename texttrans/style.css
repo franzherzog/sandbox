@@ -1,0 +1,75 @@
+p{
+    margin-left: 3em;
+    margin-right: 3em;
+}
+        
+        .trans span {
+            position: absolute;
+            visibility:hidden;
+            transition: 1s ease-in-out;
+            -webkit-transition-property: -webkit-transform;
+            -moz-transition-property: -moz-transform;
+            -ms-transition-property: -ms-transform;
+            -o-transition-property: -o-transform;
+            transition-property: transform;
+        }
+      
+        .trans span:last-child {
+            position: relative;
+        }
+        
+        body {
+            margin-top: 100px;
+            min-height: 150vh;
+        }
+
+        .animate-top-mid{
+            visibility:visible!important;
+            animation: mid-top 0.3s  ease-in-out reverse;
+            animation-fill-mode: forwards;
+        }
+        .animate-mid-bottom{
+            visibility:visible!important;
+            animation: bottom-mid 0.3s  ease-in-out reverse;
+            animation-fill-mode: forwards;
+        }
+        .animate-mid-top{
+            visibility:visible!important;
+            animation: mid-top 0.3s  ease-in-out;
+            animation-fill-mode: forwards;
+        }
+        .animate-bottom-mid{
+            visibility:visible!important;
+            animation: bottom-mid  0.3s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+         .trans:before {
+            content: '||';
+            color: gold;
+            
+            } 
+        
+        @keyframes mid-top {
+            100% {
+                -webkit-transform: translateY(-0.8em) scale(0.8);
+                opacity: 0;
+                scale: 0.5;
+            }
+            0% {
+                -webkit-transform: translateY(0px) scale(1);
+                opacity: 1;
+                scale: 1;
+            }
+        }
+        
+        @keyframes bottom-mid {
+            100% {
+                -webkit-transform: translateY(0px) scale(1);
+                opacity: 1;
+            }
+            0% {
+                -webkit-transform: translateY(0.8em) scale(0.8);
+                opacity: 0;
+            }
+        }
