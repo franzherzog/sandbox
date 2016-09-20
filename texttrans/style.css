@@ -2,10 +2,14 @@ p{
     margin-left: 3em;
     margin-right: 3em;
 }
+
 body{
     line-height: 2em;
 }
-        
+
+        .trans{
+            white-space: nowrap;
+        } 
         .trans span {
             position: absolute;
             font-weight: bold;
