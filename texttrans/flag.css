@@ -1,28 +1,19 @@
 .flag{
     position: fixed;
-    top: 28%;
-    width: 2em;
+    top: 34%;
+    left: -12px;
+    width: 1.5em;
     background-color: green;
-    height: 2em;
+    height: 1.5em;
     overflow:hidden;
     border-radius: 30em;
+    border-style: solid;
+    border-width: 11px;
+    border-color: #dab19f;
 }
 .flag img{
-    height: 2em;
+    height: 1.5em;
 }
 .secflag{
-    margin-top: 3em;
-}
-body:after{
-    position: fixed;
-    top: 33%;
-    opacity: 0.1;
-    height: 1em;
-    width:33%;
-    content: '';
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(rgba(255,0,0,0),rgba(255,0,0,1),rgba(255,0,0,0)); /*Safari 5.1-6*/
-    background: -o-linear-gradient(rgba(255,0,0,0),rgba(255,0,0,1),rgba(255,0,0,0)); /*Opera 11.1-12*/
-    background: -moz-linear-gradient(rgba(255,0,0,0),rgba(255,0,0,1),rgba(255,0,0,0)); /*Fx 3.6-15*/
-    background: linear-gradient(rgba(255,0,0,0), rgba(255,0,0,1),rgba(255,0,0,0)); /*Standard*/
+    margin-top: 2em;
 }
